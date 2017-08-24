@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>First Angular App</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body data-ng-app="myApp" data-ng-controller="FirstController">
+
+  <!-- <div  > -->
+  <div class="login-page">
+    <!-- <h1>{{title}}</h1> -->
+    <!-- <div class="form"> -->
+    <form data-ng-submit="saveForm()" class="form register-form">
+      <!-- <label>First Name: </label> -->
+      <input type="text" data-ng-model="firstname" placeholder="first name">
+
+      <br><br>
+
+      <!-- <label>Last Name: </label> -->
+      <input type="text" data-ng-model="lastname" placeholder="last name">
+
+      <br><br>
+
+      <!-- <label>Email: </label> -->
+      <input type="email" data-ng-model="email" placeholder="email">
+
+      <br><br>
+
+      <!-- <label>Phone Number: </label> -->
+      <input type="text" data-ng-model="phonenumber" placeholder="phone number">
+
+      <br><br>
+
+      <!-- <input type="submit" value="Save"> -->
+      <button><strong>Save</strong></button>
+      <br><br>
+    </form>
+    <!-- </div> -->
+</div>
+    <table border="1">
+      <tr>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Email</td>
+        <td>Phone Number</td>
+      </tr>
+      <tr data-ng-repeat="fd in formdata track by $index">
+        <td>{{ fd.fn }}</td>
+        <td>{{ fd.ln }}</td>
+        <td>{{ fd.em }}</td>
+        <td>{{ fd.pn }}</td>
+      </tr>
+    </table>
+  
+  <!-- </div> -->
+
+  <script src="js/app.js"></script>
+</body>
+</html>
