@@ -7,54 +7,51 @@
 </head>
 <body data-ng-app="myApp" data-ng-controller="FirstController">
 
-  <!-- <div  > -->
   <div class="login-page">
-    <!-- <h1>{{title}}</h1> -->
-    <!-- <div class="form"> -->
-    <form data-ng-submit="saveForm()" class="form register-form">
-      <!-- <label>First Name: </label> -->
-      <input type="text" data-ng-model="firstname" placeholder="first name">
-
-      <br><br>
-
-      <!-- <label>Last Name: </label> -->
-      <input type="text" data-ng-model="lastname" placeholder="last name">
-
-      <br><br>
-
-      <!-- <label>Email: </label> -->
-      <input type="email" data-ng-model="email" placeholder="email">
-
-      <br><br>
-
-      <!-- <label>Phone Number: </label> -->
-      <input type="text" data-ng-model="phonenumber" placeholder="phone number">
-
-      <br><br>
-
-      <!-- <input type="submit" value="Save"> -->
-      <button><strong>Save</strong></button>
-      <br><br>
+    <form data-ng-submit="saveForm()" name="regForm" class="form register-form" novalidate="">
+        <div ng-class="{ 'has-error' : regForm.firstname.$invalid && !regForm.firstname.$pristine }">
+            <input type="text" name="firstname" data-ng-model="firstname" placeholder="first name" required="">
+            <label ng-show="regForm.firstname.$invalid && !regForm.firstname.$pristine">First Name required !</label>
+        </div>
+        <div ng-class="{ 'has-error' : regForm.lastname.$invalid && !regForm.lastname.$pristine }">
+            <input type="text" name="lastname" data-ng-model="lastname" placeholder="last name" required="">
+            <label ng-show="regForm.lastname.$invalid && !regForm.lastname.$pristine">Last Name required !</label>
+        </div>
+        <div ng-class="{ 'has-error' : regForm.email.$invalid && !regForm.email.$pristine }">
+            <input type="email" name="email" data-ng-model="email" placeholder="email" required="">
+            <label ng-show="regForm.email.$invalid && !regForm.email.$pristine">Email required !</label>
+        </div>
+        <div ng-class="{ 'has-error' : regForm.phonenumber.$invalid && !regForm.phonenumber.$pristine }">
+            <input type="text" name="phonenumber" data-ng-model="phonenumber" placeholder="phone number" required="" ng-minlength="10" ng-maxlength="10" maxlength="10">
+            <!-- <label ng-show="regForm.phonenumber.$invalid && !regForm.phonenumber.$pristine">Phone Number required !</label> -->
+            <!-- <label ng-show="regForm.phonenumber.$valid && regForm.phonenumber.$pristine && regForm.phonenumber.$error.minlength">10 digits required !</label> -->
+            <label ng-show="regForm.phonenumber.$error.minlength">10 digits required !</label>
+            <label ng-show="regForm.phonenumber.$error.maxlength">10 digits required !</label>
+        </div>
+        <button ng-disabled="regForm.$invalid"><strong>Save</strong></button>
     </form>
-    <!-- </div> -->
 </div>
-    <table border="1">
-      <tr>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Email</td>
-        <td>Phone Number</td>
-      </tr>
-      <tr data-ng-repeat="fd in formdata track by $index">
-        <td>{{ fd.fn }}</td>
-        <td>{{ fd.ln }}</td>
-        <td>{{ fd.em }}</td>
-        <td>{{ fd.pn }}</td>
-      </tr>
-    </table>
-  
-  <!-- </div> -->
 
-  <script src="js/app.js"></script>
+<br><br>
+<table border="1">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+    </tr>
+</thead>
+<tbody>
+  <tr data-ng-repeat="fd in formdata track by $index">
+    <td>{{ fd.fn }}</td>
+    <td>{{ fd.ln }}</td>
+    <td>{{ fd.em }}</td>
+    <td>{{ fd.pn }}</td>
+</tr>
+</tbody>
+</table>
+
+<script src="js/app.js"></script>
 </body>
 </html>
