@@ -9,9 +9,19 @@ app.controller('FirstController', function ($scope) {
 	$scope.formdata = (localStorage.getItem('formdata')!==null) ? JSON.parse($scope.saved) : [];
 	localStorage.setItem('formdata', JSON.stringify($scope.saved));
 
+	console.log(JSON.stringify($scope.saved));
+
 	$scope.saveForm = function () {
+		var t = $scope.formdata;
+		for(k in t) {
+			console.log(t[k]);
+		}
+		// console.log($scope.formdata);
+		// console.log("Length: " + $scope.formdata.length);
+		var d = new Date().valueOf();
 		$scope.formdata.push({
 			// text: $scope.firstname,
+			uid: d,
 			fn: $scope.firstname,
 			ln: $scope.lastname,
 			em: $scope.email,
@@ -29,4 +39,15 @@ app.controller('FirstController', function ($scope) {
 			$scope.regForm.$setPristine();
 		}
 	};
+
+	$scope.editData = function(fd) {
+		// alert(fd.fn);
+		$scope.regForm.$setPristine();
+		$scope.firstname = fd.fn;
+		$scope.lastname = fd.ln;
+		$scope.email = fd.em;
+		$scope.phonenumber = fd.pn;
+		// console.log(fd);
+		// console.log(angular.fromJson(window.localStorage['fd']));
+	}
 });

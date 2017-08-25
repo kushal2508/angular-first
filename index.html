@@ -4,6 +4,10 @@
   <title>First Angular App</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <!-- Bootstrap -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 </head>
 <body data-ng-app="myApp" data-ng-controller="FirstController">
 
@@ -38,6 +42,7 @@
         <th>Last Name</th>
         <th>Email</th>
         <th>Phone Number</th>
+        <th>Edit</th>
     </tr>
 </thead>
 <tbody>
@@ -46,6 +51,7 @@
     <td>{{ fd.ln }}</td>
     <td>{{ fd.em }}</td>
     <td>{{ fd.pn }}</td>
+    <td><button class="editbutton" ng-click="editData(fd)">Edit</button></td>
 </tr>
 </tbody>
 </table>
