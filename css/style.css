@@ -2,7 +2,7 @@
 
 	.login-page {
 		width: 360px;
-		padding: 8% 0 0;
+		padding: 5% 0 0;
 		margin: auto;
 	}
 	.form  {
@@ -129,11 +129,6 @@
 
 	.has-error {
 		color: red;
-		/*background-color: yellow;*/
 	}
-
-	/*label {
-		padding: 0px 0px 0px 0px;
-	}*/
 
 	/*tr:nth-child(even){background-color: #f2f2f2}*/

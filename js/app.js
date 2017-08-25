@@ -1,6 +1,8 @@
 var app = angular.module('myApp', []);
+
 app.controller('FirstController', function ($scope) {
 	$scope.title = "Registration Form";
+	$scope.phnoPattern = /^\d{10}$/;
 
 	$scope.saved = localStorage.getItem('formdata');
 	// $scope.formdata = (localStorage.getItem('formdata')!==null) ? JSON.parse($scope.saved) : [ {text: 'Learn AngularJS', done: false}, {text: 'Build an Angular app', done: false} ];
@@ -19,6 +21,12 @@ app.controller('FirstController', function ($scope) {
 		$scope.lastname = '';
 		$scope.email = '';
 		$scope.phonenumber = '';
+
 		localStorage.setItem('formdata', JSON.stringify($scope.formdata));
+
+		if($scope.regForm.$valid) {
+			alert('Form Submitted Successfully !');
+			$scope.regForm.$setPristine();
+		}
 	};
 });
