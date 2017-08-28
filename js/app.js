@@ -12,21 +12,34 @@ app.controller('FirstController', function ($scope) {
 	console.log(JSON.stringify($scope.saved));
 
 	$scope.saveForm = function () {
-		var t = $scope.formdata;
-		for(k in t) {
-			console.log(t[k]);
+		var counter = 0;
+		var arraydata = $scope.formdata;
+		for(ayd in arraydata) {
+			// console.log("abcd" + t[k].fn);
+			if(arraydata[ayd].uid === $scope.uniquekey){
+				arraydata[ayd].fn = $scope.firstname;
+				arraydata[ayd].ln = $scope.lastname;
+				arraydata[ayd].em = $scope.email;
+				arraydata[ayd].pn = $scope.phonenumber;
+				counter++;
+			}
+			$scope.formdata = arraydata;
 		}
 		// console.log($scope.formdata);
 		// console.log("Length: " + $scope.formdata.length);
-		var d = new Date().valueOf();
-		$scope.formdata.push({
+		if(counter === 0) { 
+			var d = new Date().valueOf();
+			$scope.formdata.push({
 			// text: $scope.firstname,
-			uid: d,
-			fn: $scope.firstname,
-			ln: $scope.lastname,
-			em: $scope.email,
-			pn: $scope.phonenumber
-		});
+				uid: d,
+				fn: $scope.firstname,
+				ln: $scope.lastname,
+				em: $scope.email,
+				pn: $scope.phonenumber
+			});
+		}
+		counter = 0;
+		$scope.uniquekey = '';
 		$scope.firstname = '';
 		$scope.lastname = '';
 		$scope.email = '';
@@ -43,6 +56,7 @@ app.controller('FirstController', function ($scope) {
 	$scope.editData = function(fd) {
 		// alert(fd.fn);
 		$scope.regForm.$setPristine();
+		$scope.uniquekey = fd.uid;
 		$scope.firstname = fd.fn;
 		$scope.lastname = fd.ln;
 		$scope.email = fd.em;
